@@ -13,21 +13,22 @@
 </head>
 <body>
     <h3>Авторизация студента НГТУ</h3>
-    <p>Введите вашу почту @edu.nstu.ru</p>
-    <input type="email" id="email" placeholder="ivanov.2025@edu.nstu.ru">
+    <p>Введите вашу почту @stud.nstu.ru</p>
+    <input type="email" id="email" placeholder="ivanov.2025@stud.nstu.ru">
     <button id="send">Получить код</button>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand(); // Развернуть окно
 
-        document.getElementById("send").addEventListener("click", () => {
+       document.getElementById("send").addEventListener("click", () => {
             let email = document.getElementById("email").value;
-            if (email.includes("@corp.nstu.ru") || email.includes("@edu.nstu.ru")) {
+            // Проверяем, что почта заканчивается на @stud.nstu.ru
+            if (email.endsWith("@stud.nstu.ru")) {
                 tg.sendData(email); // Отправляем почту боту
                 tg.close();
             } else {
-                alert("Используйте корпоративную почту НГТУ!");
+                alert("Используйте студенческую почту НГТУ (@stud.nstu.ru)!");
             }
         });
     </script>
