@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priora Auth</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background: #f0f2f5; }
+        input { padding: 12px; width: 80%; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; font-size: 16px; }
+        button { background: #0088cc; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h3>Авторизация студента НГТУ</h3>
+    <p>Введите вашу почту @edu.nstu.ru</p>
+    <input type="email" id="email" placeholder="ivanov.2025@edu.nstu.ru">
+    <button id="send">Получить код</button>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Развернуть окно
+
+        document.getElementById("send").addEventListener("click", () => {
+            let email = document.getElementById("email").value;
+            if (email.includes("@corp.nstu.ru") || email.includes("@edu.nstu.ru")) {
+                tg.sendData(email); // Отправляем почту боту
+                tg.close();
+            } else {
+                alert("Используйте корпоративную почту НГТУ!");
+            }
+        });
+    </script>
+</body>
+</html>
